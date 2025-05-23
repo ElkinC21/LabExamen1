@@ -17,7 +17,9 @@ public class Cruz_Elkin_Exam1 {
         Random random = new Random();
         Scanner lea = new Scanner(System.in);
         while (true) {
-            System.out.println("------MENU-------");
+            System.out.println("===================");
+            System.out.println("     MENU");
+            System.out.println("");
             System.out.println("1. Piramide");
             System.out.println("2. Clave");
             System.out.println("3. Piedra Papel o Tijera");
@@ -29,7 +31,10 @@ public class Cruz_Elkin_Exam1 {
             switch (opcion) {
 
                 case 1 -> {
-                    System.out.print("Ingrese cantidad de fila de piramide:");
+                    System.out.println("==========================");
+                    System.out.println("      PIRAMIDE");
+                    System.out.println("");
+                    System.out.print("Ingrese cantidad de filas de la piramide:");
                     int fila = lea.nextInt();
                     int i = 1;
                     int num = 1;
@@ -53,28 +58,73 @@ public class Cruz_Elkin_Exam1 {
                         System.out.print("");
                         i++;
                     }
-
+                 
+                    continue;
                 }
+                
                 case 2 -> {
-                    System.out.println("------CLAVE------");
-                    System.out.println("Ingrese texto");
-                    String texto=lea.nextLine();
-                  
+                    System.out.println("===================");
                     
-                     
-                     
-                    
-                    
-                    
-                }
-                case 3 -> {
+                    System.out.println("1. Cifrar  ");
+                    System.out.println("2. Descifrar");
+                    System.out.print("Ingrese opcion: ");
+                    int submenu = lea.nextInt();
+                    lea.nextLine();
+                    System.out.println("Ingrese el mensaje:");
+                    String texto = lea.nextLine();
+                    int i = 0;
+                    if (opcion != 1 && opcion != 2) {
+                        System.out.println("Opción no válida.");
+                    } else {
 
-                    boolean salir = true;
-                    boolean ganar = true;
-                    boolean empate = false;
+                        if (opcion == 1) {
+                            System.out.print("Mensaje cifrado: ");
+                            while (i < texto.length()) {
+                                char letra = texto.charAt(i);
+
+                                if (letra >= 'a' && letra <= 'z') {
+
+                                    letra = (char) ('z' - (letra - 'a'));
+                                } else if (letra >= 'A' && letra <= 'Z') {
+
+                                    letra = (char) ('Z' - (letra - 'A'));
+                                }
+
+                                System.out.print(letra);
+                                i++;
+                            }
+                        } else {
+                            System.out.print("Mensaje descifrado: ");
+                            while (i < texto.length()) {
+                                char letra = texto.charAt(i);
+
+                                if (letra >= 'a' && letra <= 'z') {
+
+                                    letra = (char) ('z' - (letra - 'a'));
+                                } else if (letra >= 'A' && letra <= 'Z') {
+
+                                    letra = (char) ('Z' - (letra - 'A'));
+                                }
+
+                                System.out.print(letra);
+                                i++;
+                            }
+                            System.out.println("");
+                        }
+
+                    }
+                continue;
+                }
+
+                case 3 -> {
+                    
+                    boolean ganar;
+                    boolean empate;
                     String mensaje = "";
 
                     while (true) {
+                        ganar = true;
+                     empate = false;
                         int num = random.nextInt(3) + 1;
                         String eleccioncpu = "";
 
@@ -88,8 +138,8 @@ public class Cruz_Elkin_Exam1 {
                         if (num == 3) {
                             eleccioncpu = "TIJERA";
                         }
-
-                        System.out.println("--------BIENVENIDO--------");
+                         System.out.println("===================");
+                        System.out.println("     BIENVENIDO");
                         System.out.println("");
                         while (true) {
                             System.out.println("Papel   Piedra   Tijera");
@@ -116,6 +166,8 @@ public class Cruz_Elkin_Exam1 {
 
                             empate = true;
                             mensaje = "EMPATE!!!!";
+                        }else if(eleccion.equals("TIJERA")&& eleccioncpu.equals("PIEDRA")){
+                        ganar=false;
                         }
                         System.out.println("Eleccion de la computadora: " + eleccioncpu);
                         System.out.println("");
@@ -133,24 +185,33 @@ public class Cruz_Elkin_Exam1 {
 
                         System.out.println(mensaje);
                         System.out.println("");
+                        String pregunta="";
+                        while(true){
                         System.out.print("Desea volver a jugar?: ");
-                        String pregunta = lea.nextLine();
+                         pregunta = lea.nextLine();
 
                         pregunta = pregunta.toUpperCase();
+                        if(!pregunta.equals("SI")&&!pregunta.equals("NO")){
+                            System.out.println("Porfavor ingrese una opcion valida");
+                        }else {
+                        break;
+                        }
+                        }
                         if (pregunta.equals("NO")) {
                             break;
                         }
 
                     }
+                continue;
                 }
                 case 4 -> {
-
+                     System.out.println("===================");
                     System.out.println("-----ADIVINA EL NUMERO-------");
                     int num = random.nextInt(100) + 1;
                     int intentos = 10;
-                    
+
                     boolean ganar = true;
-                    String mensaje="";
+                    String mensaje = "";
                     while (true) {
 
                         System.out.print("Ingrese numero: ");
@@ -162,14 +223,14 @@ public class Cruz_Elkin_Exam1 {
                         } else {
                             intentos -= 1;
                             System.out.println("FALLASTE");
-                            
+
                             if (numusuario > num) {
                                 System.out.println("El numero a adivinar es menor que el ingresado");
                             } else if (numusuario < num) {
                                 System.out.println("El numero a adivinar es mayor que el ingresado");
 
                             }
-                        System.out.println("TE QUEDAN " + intentos + " INTENTOS");
+                            System.out.println("TE QUEDAN " + intentos + " INTENTOS");
                             System.out.println("");
                         }
                         if (intentos == 0) {
@@ -177,21 +238,26 @@ public class Cruz_Elkin_Exam1 {
                             break;
                         }
                     }
-                       if(ganar){
-                       mensaje="FELICIDADES HAS GANADO!!!!!\n"
-                               + "Lo lograstes en: "+(10-intentos)+" Intentos";
-                       }else{
-                       mensaje="HAS PERDIDO\n"
-                               + "El numero a adivinar era: "+num;
-                       }
+                    if (ganar) {
+                        mensaje = "FELICIDADES HAS GANADO!!!!!\n"
+                                + "Lo lograstes en: " + (10 - intentos) + " Intentos";
+                    } else {
+                        mensaje = "HAS PERDIDO\n"
+                                + "El numero a adivinar era: " + num;
+                    }
                     System.out.println(mensaje);
-                continue;
-                }
+                    continue;
                 
-                case 5 -> {
-                    System.out.println("Cerrando programa");
                 }
 
+                case 5 -> {
+                    System.out.println("Saliendo del programa....");
+                break;
+                }
+                default-> {
+                    System.out.println("Ingrese una opcion valida");
+             continue;
+                }
             }
             break;
         }
